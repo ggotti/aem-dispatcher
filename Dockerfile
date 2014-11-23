@@ -15,11 +15,10 @@ RUN ls ./dispatcher
 # Copy Dispatcher
 RUN cp "./dispatcher/dispatcher-apache2.2-4.1.8.so" "/etc/httpd/modules/dispatcher-apache2.2-4.1.8.so"
 RUN ln -s /etc/httpd/modules/dispatcher-apache2.2-4.1.8.so /etc/httpd/modules/mod_dispatcher.so
-# RUN cp ./dispatcher/conf/dispatcher.any /etc/httpd/conf/dispatcher.any
 
 # Add config files
-ADD httpd.conf /etc/httpd/conf/httpd.conf
-ADD dispatcher.any /etc/httpd/conf/dispatcher.any
+ADD https://raw.githubusercontent.com/ggotti/aem-dispatcher/master/httpd.conf /etc/httpd/conf/httpd.conf
+ADD https://raw.githubusercontent.com/ggotti/aem-dispatcher/master/dispatcher.any /etc/httpd/conf/dispatcher.any
 
 CMD ["-D", "FOREGROUND"]
 ENTRYPOINT ["/usr/sbin/httpd"]
